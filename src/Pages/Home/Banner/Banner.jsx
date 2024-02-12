@@ -13,9 +13,9 @@ const Banner = () => {
           className="w-full h-[600px] rounded-2xl "
         />
         <div className="absolute flex  gap-x-6 transform -translate-y-1/2 left-24 right-5 bottom-0">
-          <div className=' text-gray-300'>
+          <div className=' text-slate-100'>
             <h2 className=' text-6xl font-semibold'>Affordable <br /> Price For <br /> Car Servicing</h2>
-            <p className=' mt-3 mb-3'>There are many variations of passages of  available, <br />but the majority have suffered alteration in some form</p>
+            <p className=' mt-5 mb-5'>There are many variations of passages of  available, <br />but the majority have suffered alteration in some form</p>
             <div>
             <Link className="btn bg-orange-600">Discover More</Link>
             <Link className="btn ms-5">Latest Project</Link>
@@ -37,9 +37,9 @@ const Banner = () => {
           className="w-full h-[600px] rounded-2xl "
         />
         <div className="absolute flex  gap-x-6 transform -translate-y-1/2 left-24 right-5 bottom-0">
-          <div className=' text-gray-300'>
+          <div className=' text-slate-100'>
             <h2 className=' text-6xl font-semibold'>Affordable <br /> Price For <br /> Car Servicing</h2>
-            <p className=' mt-3 mb-3'>There are many variations of passages of  available, <br />but the majority have suffered alteration in some form</p>
+            <p className=' mt-5 mb-5'>There are many variations of passages of  available, <br />but the majority have suffered alteration in some form</p>
             <div>
             <Link className="btn bg-orange-600">Discover More</Link>
             <Link className="btn ms-5">Latest Project</Link>
@@ -61,9 +61,9 @@ const Banner = () => {
           className="w-full h-[600px] rounded-2xl "
         />
         <div className="absolute flex  gap-x-6 transform -translate-y-1/2 left-24 right-5 bottom-0">
-          <div className=' text-gray-300'>
+          <div className=' text-slate-100'>
             <h2 className=' text-6xl font-semibold'>Affordable <br /> Price For <br /> Car Servicing</h2>
-            <p className=' mt-3 mb-3'>There are many variations of passages of  available, <br />but the majority have suffered alteration in some form</p>
+            <p className=' mt-5 mb-5'>There are many variations of passages of  available, <br />but the majority have suffered alteration in some form</p>
             <div>
             <Link className="btn bg-orange-600">Discover More</Link>
             <Link className="btn ms-5">Latest Project</Link>
@@ -85,9 +85,9 @@ const Banner = () => {
           className="w-full h-[600px] rounded-2xl "
         />
         <div className="absolute flex  gap-x-6 transform -translate-y-1/2 left-24 right-5 bottom-0">
-          <div className=' text-gray-300'>
+          <div className=' text-slate-100'>
             <h2 className=' text-6xl font-semibold'>Affordable <br /> Price For <br /> Car Servicing</h2>
-            <p className=' mt-3 mb-3'>There are many variations of passages of  available, <br />but the majority have suffered alteration in some form</p>
+            <p className=' mt-5 mb-5'>There are many variations of passages of  available, <br />but the majority have suffered alteration in some form</p>
             <div>
             <Link className="btn bg-orange-600">Discover More</Link>
             <Link className="btn ms-5">Latest Project</Link>
