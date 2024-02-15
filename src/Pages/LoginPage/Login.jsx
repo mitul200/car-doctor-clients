@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import loginImg from '../../assets/images/login/login.svg'
 const Login = () => {
   const handelLogin =(event)=>{
-    const form = event.target
+    event.preventDefault()
+    
 
     
   }
@@ -14,6 +15,7 @@ const Login = () => {
         </div>
         <div className="card shrink-0 w-1/2 max-w-sm shadow-2xl bg-base-100">
           <form onSubmit={handelLogin} className="card-body">
+          <p className=' text-center font-semibold text-2xl text-purple-700'>Please Login</p>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
