@@ -4,6 +4,7 @@ import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import router from "./Routes/Routes.jsx";
 import AuthProvider from "./Provider/AuthProvider.jsx";
+// import AuthProvider from "./Provider/AuthProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <div className=" max-w-7xl mx-auto">
@@ -12,6 +13,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <RouterProvider router={router}></RouterProvider>
       </AuthProvider>
     </React.StrictMode>
-    ,
   </div>
 );

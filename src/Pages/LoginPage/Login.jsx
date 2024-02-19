@@ -2,11 +2,12 @@ import { Link } from 'react-router-dom';
 import loginImg from '../../assets/images/login/login.svg'
 import { useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
-import { Result } from 'postcss';
+
 const Login = () => {
 
-
   const {singIn} = useContext(AuthContext)
+ 
+
 
   const handelLogin =(event)=>{
     event.preventDefault()
@@ -15,13 +16,12 @@ const Login = () => {
     const email = form.email.value
     const password = form.password.value
     console.log(name,email,password);
-    
-     singIn(email , password)
-     .then(Result =>{
-      const user = Result.user
+    singIn(email, password)
+    .then(result =>{
+      const user  = result.user
       console.log(user);
-     })
-     .then(error =>console.log(error))
+    })
+    .catch(error=>console.log(error))
 
     
   }
