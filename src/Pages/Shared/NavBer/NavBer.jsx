@@ -1,7 +1,17 @@
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const NavBer = () => {
+  const { user,logOut } = useContext(AuthContext);
+
+  const handelLogout =()=>{
+    logOut()
+    .then(()=>{})
+    .catch(error =>console.log(error))
+
+  }
   return (
     <div className="navbar bg-base-100 h-28 mb-10">
       <div className="navbar-start">
@@ -27,17 +37,26 @@ const NavBer = () => {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link to=''>Home</Link>
+              <Link to="">Home</Link>
             </li>
             <li>
-              <Link to=''>About</Link>
+              <Link to="">About</Link>
             </li>
             <li>
-              <Link to=''>Blog</Link>
+              <Link to="">Blog</Link>
             </li>
             <li>
-              <Link to=''>Contuct</Link>
+              <Link to="">Contuct</Link>
             </li>
+            {user?.email ? (
+              <li>
+                <button onClick={handelLogout} className="btn btn-ghost">Log Out</button>
+              </li>
+            ) : (
+              <li>
+                <Link to="login">Login</Link>
+              </li>
+            )}
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost text-xl">
@@ -47,21 +66,32 @@ const NavBer = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to=''>Home</Link>
+            <Link to="">Home</Link>
           </li>
           <li>
-            <Link to=''>About</Link>
+            <Link to="">About</Link>
           </li>
           <li>
-            <Link to=''>Blog</Link>
+            <Link to="">Blog</Link>
           </li>
           <li>
-            <Link to=''>Contuct</Link>
+            <Link to="">Contuct</Link>
           </li>
+          {user?.email ? (
+              <li>
+                <button onClick={handelLogout} className="btn btn-ghost">Log Out</button>
+              </li>
+            ) : (
+              <li>
+                <Link to="login">Login</Link>
+              </li>
+            )}
         </ul>
       </div>
       <div className="navbar-end">
-        <Link className="btn text-red-600 border border-red-700">Appointment</Link>
+        <Link className="btn text-red-600 border border-red-700">
+          Appointment
+        </Link>
       </div>
     </div>
   );

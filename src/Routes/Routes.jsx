@@ -3,6 +3,8 @@ import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/LoginPage/Login";
 import SingUp from "../Pages/LoginPage/SingUp";
+import CheackOut from "../Pages/CheackOut/CheackOut";
+
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,11 @@ const router = createBrowserRouter([
       {
         path:'/singUp',
         element:<SingUp/>
+      },
+      {
+        path:'cheackOut/:id',
+        element:<CheackOut/>,
+        loader: ({params})=> fetch(`http://localhost:5000/services/${params.id}`)
       }
     ],
   },
