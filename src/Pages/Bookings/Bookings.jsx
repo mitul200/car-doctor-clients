@@ -5,30 +5,51 @@ import BookingsRow from "./BookingsRow";
 const Bookings = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
+  const url =`http://localhost:5000/bookings?email=${user.email}`
 
   useEffect(() => {
-    fetch(`http://localhost:5000/bookings?email=${user.email}`)
+    fetch(url)
       .then((res) => res.json())
       .then((data) => setBookings(data));
-  }, []);
+  }, [url]);
 
-  const handelDelet =(id)=>{
-    const proced =confirm('are you sure you want to delet')
-    if(proced){
-        fetch(`http://localhost:5000/bookings/${id}`,{
-            method:"DELETE"
-        })
-        .then(res => res.json())
-        .then(data =>{
-            console.log(data)
-            if(data.deletedCount > 0){
-                alert('Delet successfully')
-                const remining = bookings.filter(booking => booking._id !== id)
-                setBookings(remining)
-            }
-        })
+  const handelDelet = (id) => {
+    const proced = confirm("are you sure you want to delet");
+    if (proced) {
+      fetch(`http://localhost:5000/bookings/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.deletedCount > 0) {
+            alert("Delet successfully");
+            const remining = bookings.filter((booking) => booking._id !== id);
+            setBookings(remining);
+          }
+        });
     }
+  };
 
+  const handelBookingConfirm = (id) => {
+    fetch(`http://localhost:5000/bookings/${id}`,{
+        method:"PATCH",
+        headers: {
+            "content-type" : "application/json"
+        },
+        body: JSON.stringify({status:'confirm'})
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          const remining = bookings.filter(booking => booking._id !== id)
+          const updateOne = bookings.find(booking => booking._id === id)
+          updateOne.status ='confirm'
+          const newBookings = [updateOne , ...remining]
+          setBookings(newBookings)
+        }
+      })
   }
 
   // console.log(bookings);
@@ -39,9 +60,8 @@ const Bookings = () => {
         <table className="table">
           {/* head */}
           <thead>
-            
             <tr>
-            <th></th>
+              <th></th>
               <th>Name</th>
               <th>DATE</th>
               <th>PRICE</th>
@@ -50,9 +70,12 @@ const Bookings = () => {
           </thead>
           <tbody>
             {bookings.map((booking) => (
-              <BookingsRow key={booking._id}
-              handelDelet={handelDelet}
-               booking={booking}></BookingsRow>
+              <BookingsRow
+                key={booking._id}
+                handelDelet={handelDelet}
+                handelBookingConfirm={handelBookingConfirm}
+                booking={booking}
+              ></BookingsRow>
             ))}
           </tbody>
         </table>
