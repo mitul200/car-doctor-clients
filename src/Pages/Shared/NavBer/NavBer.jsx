@@ -4,14 +4,13 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 
 const NavBer = () => {
-  const { user,logOut } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
-  const handelLogout =()=>{
+  const handelLogout = () => {
     logOut()
-    .then(()=>{})
-    .catch(error =>console.log(error))
-
-  }
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
   return (
     <div className="navbar bg-base-100 h-28 mb-10">
       <div className="navbar-start">
@@ -49,9 +48,16 @@ const NavBer = () => {
               <Link to="">Contuct</Link>
             </li>
             {user?.email ? (
-              <li>
-                <button onClick={handelLogout} className="btn btn-ghost">Log Out</button>
-              </li>
+              <>
+                <li>
+                  <Link to="bookings">My Bookings</Link>
+                </li>
+                <li>
+                  <button onClick={handelLogout} className="btn btn-ghost">
+                    Log Out
+                  </button>
+                </li>
+              </>
             ) : (
               <li>
                 <Link to="login">Login</Link>
@@ -78,14 +84,21 @@ const NavBer = () => {
             <Link to="">Contuct</Link>
           </li>
           {user?.email ? (
-              <li>
-                <button onClick={handelLogout} className="btn btn-ghost">Log Out</button>
-              </li>
-            ) : (
-              <li>
-                <Link to="login">Login</Link>
-              </li>
-            )}
+               <>
+               <li>
+                 <Link to="bookings">My Bookings</Link>
+               </li>
+               <li>
+                 <button onClick={handelLogout} className="btn btn-ghost">
+                   Log Out
+                 </button>
+               </li>
+             </>
+          ) : (
+            <li>
+              <Link to="login">Login</Link>
+            </li>
+          )}
         </ul>
       </div>
       <div className="navbar-end">
