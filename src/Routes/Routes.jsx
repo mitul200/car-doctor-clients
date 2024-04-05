@@ -1,12 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
+import Bookings from "../Pages/Bookings/Bookings";
+import CheackOut from "../Pages/CheackOut/CheackOut";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/LoginPage/Login";
 import SingUp from "../Pages/LoginPage/SingUp";
-import CheackOut from "../Pages/CheackOut/CheackOut";
-import Bookings from "../Pages/Bookings/Bookings";
 import PrivetRoute from "./PrivetRoute";
-
 
 const router = createBrowserRouter([
   {
@@ -18,22 +17,31 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path:'/login',
-        element:<Login/>
+        path: "/login",
+        element: <Login />,
       },
       {
-        path:'/singUp',
-        element:<SingUp/>
+        path: "/singUp",
+        element: <SingUp />,
       },
       {
-        path:'cheackOut/:id',
-        element:<CheackOut/>,
-        loader: ({params})=> fetch(`http://localhost:5000/services/${params.id}`)
+        path: "cheackOut/:id",
+        element: (
+          <PrivetRoute>
+            <CheackOut />
+          </PrivetRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/services/${params.id}`),
       },
       {
-        path:'/bookings',
-        element:<PrivetRoute><Bookings/></PrivetRoute>
-      }
+        path: "/bookings",
+        element: (
+          <PrivetRoute>
+            <Bookings />
+          </PrivetRoute>
+        ),
+      },
     ],
   },
 ]);

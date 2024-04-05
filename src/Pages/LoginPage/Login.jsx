@@ -1,46 +1,51 @@
-import { Link } from 'react-router-dom';
-import loginImg from '../../assets/images/login/login.svg'
-import { useContext } from 'react';
-import { AuthContext } from '../../Provider/AuthProvider';
+import { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
+import loginImg from "../../assets/images/login/login.svg";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
+  const { singIn } = useContext(AuthContext);
 
-  const {singIn} = useContext(AuthContext)
- 
+  const location = useLocation();
 
+  const from = location.state?.from?.pathName || "/";
 
-  const handelLogin =(event)=>{
-    event.preventDefault()
-    const form = event.target
-    const name = form.name.value
-    const email = form.email.value
-    const password = form.password.value
-    console.log(name,email,password);
+  const navigate = useNavigate();
+
+  const handelLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name, email, password);
     singIn(email, password)
-    .then(result =>{
-      const user  = result.user
-      console.log(user);
-    })
-    .catch(error=>console.log(error))
-
-    
-  }
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <div className="hero min-h-screen">
       <div className="hero-content flex-col lg:flex-row w-full p-10 mx-auto">
         <div className="text-center lg:text-left w-1/2">
-          <img className='h-[450px]' src={loginImg} alt="" />
+          <img className="h-[450px]" src={loginImg} alt="" />
         </div>
         <div className="card shrink-0 w-1/2 max-w-sm shadow-2xl bg-base-100">
           <form onSubmit={handelLogin} className="card-body">
-          <p className=' text-center font-semibold text-2xl text-purple-700'>Please Login</p>
+            <p className=" text-center font-semibold text-2xl text-purple-700">
+              Please Login
+            </p>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input
                 type="email"
-                name='email'
+                name="email"
                 placeholder="email"
                 className="input input-bordered"
                 required
@@ -52,7 +57,7 @@ const Login = () => {
               </label>
               <input
                 type="password"
-                name='password'
+                name="password"
                 placeholder="password"
                 className="input input-bordered"
                 required
@@ -65,10 +70,20 @@ const Login = () => {
             </div>
             <div className="form-control mt-6">
               {/* <button className="">Login</button> */}
-               <input className='btn text-white font-bold btn-primary' type="submit" value="Login" />
+              <input
+                className="btn text-white font-bold btn-primary"
+                type="submit"
+                value="Login"
+              />
             </div>
           </form>
-          <p className=' mb-4 text-center font-semibold'>Are you new here <span className='text-blue-600'><Link to={'/singUp'}>Sing Up</Link></span></p>
+          <p className=" mb-4 text-center font-semibold">
+            Are you new here{" "}
+            <span className="text-blue-600">
+              <Link to={"/singUp"}>Sing Up</Link>
+            </span>
+            <SocialLogin />
+          </p>
         </div>
       </div>
     </div>

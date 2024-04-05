@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import logo from "../../../assets/logo.svg";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import logo from "../../../assets/logo.svg";
 
 const NavBer = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -84,16 +84,16 @@ const NavBer = () => {
             <Link to="">Contuct</Link>
           </li>
           {user?.email ? (
-               <>
-               <li>
-                 <Link to="bookings">My Bookings</Link>
-               </li>
-               <li>
-                 <button onClick={handelLogout} className="btn btn-ghost">
-                   Log Out
-                 </button>
-               </li>
-             </>
+            <>
+              <li>
+                <Link to="bookings">My Bookings</Link>
+              </li>
+              <li>
+                <button onClick={handelLogout} className="btn btn-ghost">
+                  Log Out
+                </button>
+              </li>
+            </>
           ) : (
             <li>
               <Link to="login">Login</Link>
